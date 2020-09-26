@@ -1,0 +1,51 @@
+.avatar{
+  border-radius:50%;
+  height: 25px;
+  width: 25px;
+}
+.signin-box{
+  margin: 50px auto;
+  width: 30%;
+}
+.chat-box{
+  background-color: #8a8b94;
+  color:white;
+  width: 420px;
+  margin: 0px auto;
+}
+.brand{
+  text-align: center;
+}
+.messages-box{
+  display: flex;
+  margin-top: 5px;
+
+}
+.img-profile{
+  margin-left: 10px;
+}
+
+.message-text{
+  margin-top:-15px;
+  margin-left: 10px;
+}
+
+input{
+  width: 70%;
+  height: 20px;
+}
+
+.btn-send{
+  width: 28%;
+  height: 25px;
+}
+.header{
+  display: flex;
+  justify-content: space-around;
+  width: 60%;
+  margin: auto;
+}
+.sign-out{
+  float: right;
+  margin-bottom: 5px;
+}
