@@ -3,15 +3,25 @@
   height: 25px;
   width: 25px;
 }
+.main-box{
+  width: 300px;
+  margin: 30px auto;
+  display: flex;
+  border-color: currentColor;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .signin-box{
-  margin: 50px auto;
-  width: 30%;
+  margin: 10px auto;
+  font-weight: bold;
 }
 .chat-box{
-  background-color: #8a8b94;
+  background-color: #292b2c;
   color:white;
   width: 420px;
-  margin: 0px auto;
+  margin: 10px auto;
+  height: 100%;
 }
 .brand{
   text-align: center;
@@ -23,21 +33,39 @@
 }
 .img-profile{
   margin-left: 10px;
+  position: fixed;
 }
 
 .message-text{
-  margin-top:-15px;
-  margin-left: 10px;
+  margin-top:-22px;
+  margin-left: 50px;
 }
 
 input{
   width: 70%;
-  height: 20px;
+  height: 30px;
+}
+input:focus{
+  border:2px solid #0275d8;
+  outline: none;
 }
 
 .btn-send{
   width: 28%;
-  height: 25px;
+  height: 35px;
+  color: white;
+  background-color: #0275d8;
+  outline: none;
+  font-weight: bold;
+  border-color: #0275d8;
+}
+button{
+  background-color: #d9534f;
+  color: white;
+  height:27px;
+  margin-top: 5px;
+  outline: none;
+  border-color: #d9534f;
 }
 .header{
   display: flex;
@@ -47,5 +75,43 @@ input{
 }
 .sign-out{
   float: right;
+  margin-top: -5px;
+  height: 27px;
+}
+.chat-head{
+  background-color: #5bc0de;
   margin-bottom: 5px;
+  padding-left: 5px;
+}
+.head-text{
+  padding-top: -5px;
+}
+.sign-in{
+  height: 38px;
+  font-size: 28px;
+}
+
+.sent-by{
+  font-size: 10px;
+  margin: 28px 0px 0px 16px;
+  position: fixed;
+}
+.sent{
+  float: right;
+}
+.recieved{
+  float:left;
+}
+@media only screen and (max-width: 900px) {
+  input{
+    width: 100%;
+  }
+  .chat-box{
+    margin: 0px;
+    width: 100%;
+  }
+  .chat-head{}
+  .btn-send{
+    margin-top:-20px;
+  }
 }

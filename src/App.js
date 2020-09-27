@@ -44,9 +44,18 @@ function Signin(){
     auth.signInWithPopup(provider);
   }
   return(
-      <div className="signin-box">
-        <button onClick={signInWithGoogle}> sign In With Google</button>
+    <>
+      <div className="main-box">
+        <div className="info-box">
+            <h3>Please Signin to continue</h3>
+        </div>
+        <div className="signin-box">
+          <button className="sign-in" onClick={signInWithGoogle}> 
+          <svg xmlns="http://www.w3.org/2000/svg" id="Capa_1" enable-background="new 0 0 512 512" height="32" viewBox="0 0 512 512" width="32"><g><path d="m120 256c0-25.367 6.989-49.13 19.131-69.477v-86.308h-86.308c-34.255 44.488-52.823 98.707-52.823 155.785s18.568 111.297 52.823 155.785h86.308v-86.308c-12.142-20.347-19.131-44.11-19.131-69.477z" fill="#fbbd00"/><path d="m256 392-60 60 60 60c57.079 0 111.297-18.568 155.785-52.823v-86.216h-86.216c-20.525 12.186-44.388 19.039-69.569 19.039z" fill="#0f9d58"/><path d="m139.131 325.477-86.308 86.308c6.782 8.808 14.167 17.243 22.158 25.235 48.352 48.351 112.639 74.98 181.019 74.98v-120c-49.624 0-93.117-26.72-116.869-66.523z" fill="#31aa52"/><path d="m512 256c0-15.575-1.41-31.179-4.192-46.377l-2.251-12.299h-249.557v120h121.452c-11.794 23.461-29.928 42.602-51.884 55.638l86.216 86.216c8.808-6.782 17.243-14.167 25.235-22.158 48.352-48.353 74.981-112.64 74.981-181.02z" fill="#3c79e6"/><path d="m352.167 159.833 10.606 10.606 84.853-84.852-10.606-10.606c-48.352-48.352-112.639-74.981-181.02-74.981l-60 60 60 60c36.326 0 70.479 14.146 96.167 39.833z" fill="#cf2d48"/><path d="m256 120v-120c-68.38 0-132.667 26.629-181.02 74.98-7.991 7.991-15.376 16.426-22.158 25.235l86.308 86.308c23.753-39.803 67.246-66.523 116.87-66.523z" fill="#eb4132"/></g></svg>
+         Sign In With Google</button>
+        </div>
       </div>
+    </>
     )
 }
 
@@ -59,11 +68,12 @@ function Chat(){
 
   const sendMessage = async(e) =>{
     e.preventDefault();
-    const {uid,photoURL}=auth.currentUser;
+    const {uid,displayName,photoURL}=auth.currentUser;
     await messagesRef.add({
       text:formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
       uid,
+      displayName,
       photoURL
     });
 
@@ -75,13 +85,17 @@ function Chat(){
 
     <>
     <div className="chat-box">
-        <div className="sign-out">
-              <button onClick={()=> auth.currentUser && auth.signOut()}> Sign Out</button>
-            </div>
+        <div className="chat-head">
+          <span className="head-text"> Messages </span>
+          <div className="sign-out">
+                  <button classname="btn-out" onClick={()=> auth.currentUser && auth.signOut()}> Sign Out</button>
+              </div>
+        </div>
+
               {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />) }     
         <form onSubmit={sendMessage}>
           <div>
-            <input value={formValue} onChange={(e)=> setFormValue(e.target.value)} />
+            <input value={formValue} onChange={(e)=> setFormValue(e.target.value)} placeholder="Write your message here"/>
             <button className="btn-send" type="submit">Send</button>
           </div>
         </form>
@@ -92,7 +106,7 @@ function Chat(){
 
 function ChatMessage(props){
  
-  const{text,uid,photoURL}= props.message;
+  const{text,uid,displayName,photoURL}= props.message;
   const messageClass=uid === auth.currentUser.uid ? 'sent' : 'recieved';
   return (
         <div className="messages-box">
@@ -101,6 +115,9 @@ function ChatMessage(props){
             </div>
             <div className="message-text">
                 <p>{text}</p> 
+            </div>
+            <div className="sent-by">
+              Sent by {displayName}
             </div>
           
         </div>
